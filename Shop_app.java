@@ -18,7 +18,9 @@ public class Shop_app {
 
 	WebDriver driver = new ChromeDriver();
 	WebDriverWait myTime = new WebDriverWait(driver, Duration.ofSeconds(10));//Explicit wait
-	
+
+
+	//Launch the browser 
 	@BeforeClass
 	public void launchUrl() throws InterruptedException {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5)); //implicit wait
@@ -26,7 +28,8 @@ public class Shop_app {
 		driver.get("http://www.automationpractice.pl/index.php");
 		Thread.sleep(2000);
 	}
-	
+
+	//Login in to the website
 	@Test(priority=1) 
 	void userLogin(){
 		WebElement signIn = myTime.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Sign in")));
@@ -41,7 +44,8 @@ public class Shop_app {
 		WebElement submitBtn = myTime.until(ExpectedConditions.visibilityOfElementLocated(By.id("SubmitLogin")));
 		submitBtn.click();		
 	}
-	
+
+	//Selecting category
 	@Test(priority=2)
 	void gotoSection(){
 		WebElement section = myTime.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("WOMEN")));
@@ -76,7 +80,8 @@ public class Shop_app {
 		WebElement checkOut = myTime.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='btn btn-default button button-medium']")));
 		checkOut.click();
 	}
-	
+
+	//Payment Process
 	@Test(priority=4)
 	void paymentProcess() {
 		
@@ -98,7 +103,8 @@ public class Shop_app {
 		WebElement confirmOrder = myTime.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='button btn btn-default button-medium']")));
 		confirmOrder.click();
 	}
-	
+
+	//Logout
 	@AfterClass
 	void logOut() throws InterruptedException{
 		
